@@ -10,7 +10,7 @@ import java.util.List;
 public class ApplicationController {
 
 	//Below method calculates present value 
-	@RequestMapping(value = "/calculatepv", method = RequestMethod.POST)
+	@RequestMapping(value = "/calculatePv", method = RequestMethod.POST)
 	public String getCalculatePV(@RequestBody Input user) {
 
 
