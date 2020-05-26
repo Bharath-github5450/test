@@ -9,25 +9,18 @@ import java.util.List;
 
 public class ApplicationController {
 
-	@RequestMapping(value = "/a", method = RequestMethod.GET)
-	public String getAllUsers() {
-		//LOG.info("Getting all users.");
-		return "Bharath";
-	}
-
-
+	//Below method calculates present value 
 	@RequestMapping(value = "/calculatepv", method = RequestMethod.POST)
 	public String getCalculatePV(@RequestBody Input user) {
 
 
-		Integer fv=user.getFv();
-		//finalValue
-		Integer r=user.getR();
-		Integer n=user.getN();
+		Integer fv=user.getFv(); //Future value
+		Integer r=user.getR();   //Rate
+		Integer n=user.getN();   //Term
 
 		double temp = Math.pow((1+r),n);
 		double returnVal=fv/temp;
-		//DecimalFormat df= new DecimalFormat ("##.00");
+
 		String returnValurString= String.format("%.2f",returnVal);
 		StringBuilder sb = new StringBuilder();
 		sb.append("Future value  : $"+fv+"\n");
@@ -36,9 +29,9 @@ public class ApplicationController {
 		sb.append("Present value is $"+returnValurString);
 		return sb.toString();
 
-
-
 	}
+	
+	//Below method calculates Delta of present value
 
 	@RequestMapping(value = "/getDelta", method = RequestMethod.POST)
 	public String getDelta(@RequestBody List<Input> inputs) {
